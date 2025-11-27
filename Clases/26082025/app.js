@@ -9,7 +9,7 @@
 
 // Uso de let: alcance de bloque, se puede reasignar pero no redeclarar en el mismo ámbito.
 let nombre;
-nombre = "Aaron";
+nombre = "Raynier";
 console.log(nombre);
 /*
 let nombre; // redeclarar aquí daría error

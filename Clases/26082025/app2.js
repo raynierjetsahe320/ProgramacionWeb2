@@ -12,11 +12,11 @@ let noCuenta;
 let estatura;
 
 // Asignación de valores a las variables (datos de ejemplo)
-nombreUsuario = "Antonio";
+nombreUsuario = "Raynier";
 edad = 20;
 nacionalidad = "Mexicana";
 noCuenta = "320241755";
-estatura = 1.74;
+estatura = 2.0;
 
 // Salida por consola: muestra cada dato en una línea separada
 console.log(nombreUsuario);
