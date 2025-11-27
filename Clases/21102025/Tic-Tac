@@ -1,0 +1,106 @@
+document.addEventListener("DOMContentLoaded", () => {
+  // Pedir nombres de jugadores
+  const jugadorA = prompt("Nombre del jugador A (usa A):", "A") || "A";
+  const jugadorB = prompt("Nombre del jugador B (usa B):", "B") || "B";
+
+  alert(`Inicia el duelo: ${jugadorA} (A) vs ${jugadorB} (B)`);
+
+  // ======== Estilos rápidos para que se vea decente ========
+  const css = document.createElement("style");
+  css.textContent = `
+    body{
+      margin:0;display:flex;justify-content:center;align-items:center;
+      background:#fafafa;height:100vh;font-family:sans-serif;
+    }
+    .grid{
+      display:grid;grid-template-columns:repeat(3,90px);
+      gap:8px;
+    }
+    .cuadro{
+      width:90px;height:90px;border:2px solid #333;border-radius:6px;
+      font-size:40px;background:white;
+      display:flex;justify-content:center;align-items:center;
+      cursor:pointer;user-select:none;
+    }
+  `;
+  document.head.appendChild(css);
+
+  // ======== Construcción del tablero ========
+  const tablero = document.createElement("div");
+  tablero.className = "grid";
+  document.body.appendChild(tablero);
+
+  for (let i = 0; i < 9; i++) {
+    const celda = document.createElement("div");
+    celda.className = "cuadro";
+    celda.dataset.pos = i;
+    tablero.appendChild(celda);
+  }
+
+  // ======== Estado interno del juego ========
+  let mapa = Array(9).fill("");   // posiciones
+  let actual = "A";               // turno actual
+  let contador = 0;               // jugadas hechas
+  let fin = false;                // si ya acabó la partida
+
+  const lineas = [
+    [0,1,2],[3,4,5],[6,7,8], // horizontales
+    [0,3,6],[1,4,7],[2,5,8], // verticales
+    [0,4,8],[2,4,6]          // diagonales
+  ];
+
+  // ======== Al hacer clic en una celda ========
+  tablero.addEventListener("click", e => {
+    const cuad = e.target;
+    if (!cuad.classList.contains("cuadro")) return;
+    if (fin) return;
+    
+    const idx = +cuad.dataset.pos;
+
+    // Si está ocupada, no se puede jugar ahí
+    if (mapa[idx]) {
+      alert("Esa casilla ya está tomada.");
+      return;
+    }
+
+    // Registrar jugada
+    mapa[idx] = actual;
+    cuad.textContent = actual;
+    contador++;
+
+    // Revisar si hubo ganador
+    if (verificar()) {
+      fin = true;
+      const ganador = actual === "A" ? jugadorA : jugadorB;
+      alert(`${ganador} (${actual}) se lleva la victoria!`);
+      return;
+    }
+
+    // Empate
+    if (contador === 9) {
+      fin = true;
+      alert("No hubo ganador. ¡Empate!");
+      return;
+    }
+
+    // Cambiar turno
+    actual = actual === "A" ? "B" : "A";
+  });
+
+  // ======== Función que revisa ganadores ========
+  function verificar() {
+    return lineas.some(([x, y, z]) =>
+      mapa[x] && mapa[x] === mapa[y] && mapa[x] === mapa[z]
+    );
+  }
+
+  // ======== Reinicio con doble clic ========
+  document.body.addEventListener("dblclick", () => {
+    mapa.fill("");
+    contador = 0;
+    fin = false;
+    actual = "A";
+    document.querySelectorAll(".cuadro").forEach(c => c.textContent = "");
+    alert(`Partida reiniciada. Comienza ${jugadorA} (A).`);
+  });
+});
