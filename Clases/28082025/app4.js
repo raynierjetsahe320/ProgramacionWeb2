@@ -1,27 +1,27 @@
-/*
-let numUsuario = parseInt(prompt("Ingresa un numero mayor a 10"));
+// Solicito tres números y los convierto a tipo Number
+const nro1 = Number(prompt("Ingresa el primer número:"));
+const nro2 = Number(prompt("Ingresa el segundo número:"));
+const nro3 = Number(prompt("Ingresa el tercer número:"));
 
-if(numUsuario >= 10){
-    console.log("Genial")
-}else{
-    console.log("Mal");
+// Muestro los valores recibidos
+console.log("Primer número:", nro1);
+console.log("Segundo número:", nro2);
+console.log("Tercer número:", nro3);
+
+// Obtengo mayor y menor usando utilidades de array
+const lista = [nro1, nro2, nro3];
+const mayor = Math.max(...lista);
+const menor = Math.min(...lista);
+
+console.log("\nEl mayor es:", mayor);
+console.log("El menor es:", menor);
+
+// Verifico las igualdades con un Set
+const tipos = new Set(lista).size;
+if (tipos === 1) {
+    console.log("Los tres números son iguales");
+} else if (tipos === 2) {
+    console.log("Y dos números son iguales");
+} else {
+    console.log("Y no hay números iguales");
 }
-*/
-// Bloque comentado: pide un número y valida si es mayor o igual a 10,
-// imprime "Genial" si cumple o "Mal" si no (ejemplo de uso de prompt y condicional).
-
-// ...existing code...
-// let port ;
-
-// if(port){
-//     console.log("Deficion de puerto correcto");
-// }else{
-//     console.error("Error en puerto");
-// }
-// Bloque comentado: muestra la comprobación de truthy/falsy en una variable `port`,
-// útil para validar si una configuración está definida.
-
-// ...existing code...
-let datos = 15 != 15; // comprueba desigualdad; devuelve un booleano (true/false)
-// Nota: `!=` compara valores haciendo coerción; usar `!==` para comparar sin coerción.
-console.log(datos); // imprime el resultado (aquí será false)
