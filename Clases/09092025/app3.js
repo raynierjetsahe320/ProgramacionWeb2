@@ -1,18 +1,18 @@
-// Arreglo vacío para guardar las frutas
+// Lista inicial donde se guardarán las frutas seleccionadas
 const frutas = [];
 
-// Primer fruta ingresada
-const fruta = prompt("Feria de fruta: ¿Qué fruta quieres agregar?");
-frutas.push(fruta); // Se guarda la fruta en el arreglo
+// Primera fruta solicitada
+const primera = prompt("Bienvenido al mercado: escribe una fruta para añadir al carrito:");
+frutas.push(primera); // Guarda la primera fruta
 
-// Confirm pregunta con ventana de aceptar/cancelar
-while (confirm("¿Quieres agregar otra fruta?")) {
-    const fruta = prompt("¿Qué otra fruta quieres agregar?");
-    frutas.push(fruta); // Se agrega la nueva fruta al arreglo
+// Ciclo que pregunta si se desea continuar
+while (confirm("¿Deseas incluir otra fruta en tu carrito?")) {
+    const nueva = prompt("Escribe el nombre de otra fruta que quieras añadir:");
+    frutas.push(nueva); // Agrega la siguiente fruta ingresada
 }
 
-// Mostrar todo lo comprado
-console.log("Usted compró:");
+// Mostrar el listado final de compras
+console.log("Listado final de frutas en tu carrito:");
 for (let fruta of frutas) {
-    console.log(fruta); // Imprime cada fruta
+    console.log(fruta); // Muestra cada fruta agregada
 }
