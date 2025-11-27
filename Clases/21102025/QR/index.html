@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creador de QR</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <h1>Generar Código QR</h1>
+
+    <div class="bloque">
+        <label for="campoNombre">Nombre completo</label>
+        <input id="campoNombre" type="text" placeholder="Ej: Maria López">
+    </div>
+
+    <div class="bloque">
+        <label for="campoCorreo">Correo electrónico</label>
+        <input id="campoCorreo" type="email" placeholder="correo@ejemplo.com">
+    </div>
+
+    <div class="bloque">
+        <label for="campoInst">Institución</label>
+        <input id="campoInst" type="text" placeholder="Ej: UNAM">
+    </div>
+
+    <div class="bloque">
+        <label for="campoDep">Dependencia / Área</label>
+        <input id="campoDep" type="text" placeholder="Ej: FES Aragón">
+    </div>
+
+    <button id="makeQR">Crear QR</button>
+
+    <div id="zoneQR"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
